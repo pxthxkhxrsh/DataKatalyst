@@ -84,7 +84,7 @@ export default function PillarsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            The Four <span className="text-gradient">Pillars</span> of Excellence
+            The Five <span className="text-gradient">Pillars</span> of Excellence
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Built on strong foundations that transform your data landscape into a competitive advantage.

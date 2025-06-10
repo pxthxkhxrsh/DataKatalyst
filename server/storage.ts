@@ -43,7 +43,9 @@ export class MemStorage implements IStorage {
   async createDemoRequest(insertDemoRequest: InsertDemoRequest): Promise<DemoRequest> {
     const id = this.currentDemoId++;
     const demoRequest: DemoRequest = { 
-      ...insertDemoRequest, 
+      ...insertDemoRequest,
+      phone: insertDemoRequest.phone || null,
+      message: insertDemoRequest.message || null,
       id, 
       createdAt: new Date() 
     };
