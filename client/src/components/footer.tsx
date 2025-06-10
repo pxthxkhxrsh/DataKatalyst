@@ -7,41 +7,43 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-white border-t border-gray-200 py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h3 className="text-2xl font-bold gradient-text mb-4">Data Katalyst</h3>
-          <p className="text-slate-400 mb-6">Ignite Intelligence. Empower Decisions. Transform Possibilities.</p>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            Data <span className="text-gradient">Katalyst</span>
+          </h3>
+          <p className="text-gray-600 mb-8">Ignite Intelligence. Empower Decisions. Transform Possibilities.</p>
           
-          <div className="flex justify-center space-x-6 mb-8">
+          <div className="flex justify-center space-x-8 mb-8">
             <button 
               onClick={() => scrollToSection('overview')}
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Overview
             </button>
             <button 
               onClick={() => scrollToSection('pillars')}
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Pillars
             </button>
             <button 
               onClick={() => scrollToSection('features')}
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Features
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Contact
             </button>
           </div>
           
-          <div className="border-t border-slate-700 pt-8">
-            <p className="text-slate-500 text-sm">&copy; 2024 Data Katalyst. All rights reserved.</p>
+          <div className="border-t border-gray-200 pt-8">
+            <p className="text-gray-500 text-sm">&copy; 2024 Data Katalyst. All rights reserved.</p>
           </div>
         </div>
       </div>

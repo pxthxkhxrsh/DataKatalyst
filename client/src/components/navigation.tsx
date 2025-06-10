@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,47 +23,43 @@ export default function Navigation() {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'glassmorphism border-b border-white/20' 
-        : 'bg-transparent'
+        ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm' 
+        : 'bg-white'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div 
-                className="flex items-center cursor-pointer group" 
+              <button 
                 onClick={() => scrollToSection('hero')}
+                className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity"
               >
-                <Sparkles className="h-6 w-6 text-cyan-300 mr-2 animate-pulse" />
-                <h1 className="text-2xl font-bold gradient-text group-hover:scale-105 transition-transform">
-                  Data Katalyst
-                </h1>
-              </div>
+                Data <span className="text-gradient">Katalyst</span>
+              </button>
             </div>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-6">
+            <div className="flex items-center space-x-8">
               {[
                 { name: 'Overview', id: 'overview' },
                 { name: 'Pillars', id: 'pillars' },
                 { name: 'Features', id: 'features' },
-              ].map((item, index) => (
+              ].map((item) => (
                 <button 
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-white/80 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10 animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
                 >
                   {item.name}
                 </button>
               ))}
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-xl text-sm font-medium hover:scale-105 hover:shadow-lg transition-all duration-300 animate-pulse-glow"
+                className="primary-gradient text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
               >
                 Get Started
               </button>
@@ -74,7 +70,7 @@ export default function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white/80 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300"
+              className="text-gray-600 hover:text-gray-900 p-2"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -84,8 +80,8 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden animate-slide-up">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glassmorphism border-t border-white/20">
+        <div className="md:hidden border-t border-gray-200 bg-white">
+          <div className="px-4 pt-2 pb-3 space-y-1">
             {[
               { name: 'Overview', id: 'overview' },
               { name: 'Pillars', id: 'pillars' },
@@ -94,14 +90,14 @@ export default function Navigation() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-white/80 hover:text-white hover:bg-white/10 block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300"
+                className="text-gray-600 hover:text-gray-900 block px-3 py-2 font-medium w-full text-left"
               >
                 {item.name}
               </button>
             ))}
             <button
               onClick={() => scrollToSection('contact')}
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left hover:scale-105 transition-all duration-300"
+              className="primary-gradient text-white block px-3 py-2 rounded-lg font-medium w-full text-left mt-4"
             >
               Get Started
             </button>
