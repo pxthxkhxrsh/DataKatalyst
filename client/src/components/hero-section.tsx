@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function HeroSection() {
   const scrollToOverview = () => {
@@ -9,37 +9,69 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="hero" className="pt-16 pb-20 gradient-bg relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--data-blue)]/20 to-[var(--data-teal)]/20"></div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-        <div className="text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Data <span className="text-cyan-300">Katalyst</span>
+    <section id="hero" className="min-h-screen bg-white relative flex items-center">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, var(--neutral-300) 1px, transparent 0)`,
+          backgroundSize: '24px 24px'
+        }}></div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-4xl">
+          <div className="fade-in">
+            <div className="inline-flex items-center bg-blue-50 rounded-full px-4 py-2 mb-8">
+              <span className="text-sm font-medium text-blue-700">Enterprise Data Framework</span>
+            </div>
+            
+            <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+              Data <span className="text-gradient">Katalyst</span>
             </h1>
-            <p className="text-xl md:text-2xl text-cyan-100 mb-8 max-w-4xl mx-auto leading-relaxed">
+            
+            <p className="text-2xl text-gray-600 mb-8 leading-relaxed">
               Ignite Intelligence. Empower Decisions. Transform Possibilities.
             </p>
-            <p className="text-lg text-white/90 mb-12 max-w-3xl mx-auto">
-              Data Katalyst is not just a framework—it's the powerhouse that accelerates your data journey. Built on the strong pillars of Data Quality, Data Governance, Data Management, and DataOps, it brings clarity to chaos, turns raw data into reliable insights, and ensures your business decisions are backed by precision and trust.
+            
+            <p className="text-lg text-gray-600 mb-12 leading-relaxed max-w-3xl">
+              A comprehensive data framework built on four foundational pillars: Data Quality, Data Governance, Data Management, and DataOps. Transform your data landscape into a competitive advantage with enterprise-grade tools and processes.
             </p>
           </div>
-          <div className="animate-slide-up">
+
+          <div className="slide-up flex flex-col sm:flex-row gap-4 mb-16">
             <button 
               onClick={scrollToOverview}
-              className="inline-flex items-center px-8 py-4 bg-white text-[var(--data-blue)] font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center px-8 py-4 primary-gradient text-white font-semibold rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
             >
-              Accelerate Your Data Journey
+              Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
             </button>
+            
+            <button className="inline-flex items-center px-8 py-4 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-300">
+              View Documentation
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200">
+            {[
+              { number: "4", label: "Core Pillars" },
+              { number: "100+", label: "Data Sources" },
+              { number: "99.9%", label: "Reliability" }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.number}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-cyan-300/20 rounded-full animate-float"></div>
-      <div className="absolute top-40 right-20 w-32 h-32 bg-white/10 rounded-full animate-float" style={{animationDelay: '1s'}}></div>
-      <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-cyan-400/30 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <ChevronDown className="h-6 w-6 text-gray-400" />
+      </div>
     </section>
   );
 }
