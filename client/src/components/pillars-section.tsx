@@ -1,4 +1,4 @@
-import { CheckCircle, Shield, Database, Settings } from "lucide-react";
+import { CheckCircle, Shield, Database, Settings, TrendingUp } from "lucide-react";
 
 export default function PillarsSection() {
   const pillars = [
@@ -49,15 +49,32 @@ export default function PillarsSection() {
     },
     {
       number: 4,
+      title: "Data Analytics",
+      subtitle: "From Raw Data to Real-Time Intelligence",
+      description: "With Data Katalyst, analytics isn't an afterthought—it's the pinnacle. Our Data Analytics pillar transforms complex, fragmented datasets into intelligent, strategic insight with advanced optimization and predictive capabilities.",
+      icon: TrendingUp,
+      features: [
+        "Descriptive & Predictive Analytics",
+        "Advanced Optimization Techniques",
+        "Flexible Reporting Engine",
+        "Machine Learning Integration",
+        "Scenario Simulation Planning",
+        "Beautiful Interactive Dashboards"
+      ]
+    },
+    {
+      number: 5,
       title: "DataOps",
-      subtitle: "Automate, Monitor, and Optimize",
+      subtitle: "Streamline, Automate, and Accelerate",
       description: "DataOps brings agility and reliability to your data operations through automated workflows, continuous monitoring, and intelligent optimization—ensuring your data processes run smoothly at scale.",
       icon: Settings,
       features: [
         "Automated Workflow Orchestration",
         "Real-time Performance Monitoring",
         "Continuous Integration & Deployment",
-        "AI-Driven Optimization"
+        "Version Control for Data",
+        "Collaborative Development Environment",
+        "AI-Driven Process Optimization"
       ]
     }
   ];
