@@ -17,13 +17,7 @@ export default function CTASection() {
 
   const createDemoRequest = useMutation({
     mutationFn: async (data: typeof formData) => {
-      return apiRequest("/api/demo-requests", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      return apiRequest("POST", "/api/demo-requests", data);
     },
     onSuccess: () => {
       toast({
@@ -89,12 +83,7 @@ export default function CTASection() {
               ))}
             </div>
 
-            <div className="bg-white rounded-xl p-6 card-subtle">
-              <p className="text-sm text-gray-600 mb-2">Trusted by industry leaders</p>
-              <p className="font-semibold text-gray-900">
-                Enterprise-grade solutions for Fortune 500 companies
-              </p>
-            </div>
+
           </div>
 
           {/* Right side - Contact Form */}
