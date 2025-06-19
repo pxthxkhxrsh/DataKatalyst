@@ -88,13 +88,13 @@ export default function CTASection() {
 
           {/* Right side - Contact Form */}
           <div className="bg-white rounded-2xl p-6 lg:p-8 card-subtle">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Request a Demo</h3>
-            <p className="text-gray-600 mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Request a Demo</h3>
+            <p className="text-gray-600 mb-6 text-sm md:text-base">
               See Data Katalyst in action. Our experts will show you how to transform your data infrastructure.
             </p>
             
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
                 <div>
                   <input
                     type="text"
@@ -103,7 +103,7 @@ export default function CTASection() {
                     onChange={handleInputChange}
                     placeholder="Full Name *"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
                   />
                 </div>
                 <div>
@@ -114,12 +114,12 @@ export default function CTASection() {
                     onChange={handleInputChange}
                     placeholder="Work Email *"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
                   />
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
                 <div>
                   <input
                     type="text"
@@ -128,7 +128,7 @@ export default function CTASection() {
                     onChange={handleInputChange}
                     placeholder="Company *"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
                   />
                 </div>
                 <div>
@@ -138,7 +138,7 @@ export default function CTASection() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="Phone Number"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
                   />
                 </div>
               </div>
@@ -150,23 +150,30 @@ export default function CTASection() {
                   onChange={handleInputChange}
                   placeholder="Tell us about your data challenges..."
                   rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none transition-all duration-200 text-sm md:text-base"
                 />
               </div>
               
               <button
                 type="submit"
                 disabled={createDemoRequest.isPending}
-                className="w-full primary-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full primary-gradient text-white px-6 py-3.5 rounded-lg font-semibold hover:opacity-90 transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md text-sm md:text-base"
               >
-                {createDemoRequest.isPending ? "Submitting..." : "Schedule Demo"}
-                {!createDemoRequest.isPending && (
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                {createDemoRequest.isPending ? (
+                  <div className="flex items-center">
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                    Submitting...
+                  </div>
+                ) : (
+                  <>
+                    Schedule Demo
+                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
+                  </>
                 )}
               </button>
             </form>
             
-            <p className="text-xs text-gray-500 mt-4 text-center">
+            <p className="text-xs text-gray-500 mt-4 text-center leading-relaxed">
               By submitting this form, you agree to receive communications from Data Katalyst.
             </p>
           </div>

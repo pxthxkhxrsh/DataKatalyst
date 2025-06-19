@@ -91,42 +91,42 @@ export default function PillarsSection() {
           </p>
         </div>
 
-        <div className="space-y-16">
+        <div className="space-y-16 lg:space-y-20">
           {pillars.map((pillar, index) => (
             <div key={index} className="relative">
-              <div className={`grid lg:grid-cols-2 gap-12 items-center ${
+              <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
                 index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
               }`}>
                 {/* Content */}
-                <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 primary-gradient rounded-lg flex items-center justify-center mr-4">
+                <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} order-2 lg:order-1`}>
+                  <div className="flex items-start mb-6">
+                    <div className="w-12 h-12 primary-gradient rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                       <span className="text-white font-bold">{pillar.number}</span>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900">{pillar.title}</h3>
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">{pillar.title}</h3>
                       <p className="text-sm text-blue-600 font-medium">{pillar.subtitle}</p>
                     </div>
                   </div>
                   
-                  <p className="text-gray-600 leading-relaxed mb-8">
+                  <p className="text-gray-600 leading-relaxed mb-6 lg:mb-8">
                     {pillar.description}
                   </p>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-3">
                     {pillar.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                        <span className="text-sm text-gray-700">{feature}</span>
+                      <div key={featureIndex} className="flex items-start py-1">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-gray-700 leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
                 </div>
                 
                 {/* Icon */}
-                <div className={`flex justify-center ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                  <div className="w-64 h-64 bg-gray-50 rounded-3xl flex items-center justify-center">
-                    <pillar.icon className="h-24 w-24 text-blue-500" />
+                <div className={`flex justify-center ${index % 2 === 1 ? 'lg:col-start-1' : ''} order-1 lg:order-2`}>
+                  <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gray-50 rounded-2xl lg:rounded-3xl flex items-center justify-center card-subtle">
+                    <pillar.icon className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 text-blue-500" />
                   </div>
                 </div>
               </div>

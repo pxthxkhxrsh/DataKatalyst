@@ -1,6 +1,32 @@
-import { users, demoRequests, type User, type InsertUser, type DemoRequest, type InsertDemoRequest } from "@shared/schema";
-import { db } from "./db";
-import { eq } from "drizzle-orm";
+// Define types locally to avoid database dependencies
+type User = {
+  id: number;
+  username: string;
+  password: string;
+};
+
+type InsertUser = {
+  username: string;
+  password: string;
+};
+
+type DemoRequest = {
+  id: number;
+  name: string;
+  email: string;
+  company: string;
+  phone: string | null;
+  message: string | null;
+  createdAt: Date;
+};
+
+type InsertDemoRequest = {
+  name: string;
+  email: string;
+  company: string;
+  phone?: string;
+  message?: string;
+};
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -9,32 +35,51 @@ export interface IStorage {
   createDemoRequest(demoRequest: InsertDemoRequest): Promise<DemoRequest>;
 }
 
-export class DatabaseStorage implements IStorage {
+export class MemStorage implements IStorage {
+  private users: Map<number, User>;
+  private demoRequests: Map<number, DemoRequest>;
+  currentId: number;
+  currentDemoId: number;
+
+  constructor() {
+    this.users = new Map();
+    this.demoRequests = new Map();
+    this.currentId = 1;
+    this.currentDemoId = 1;
+  }
+
   async getUser(id: number): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user || undefined;
+    return this.users.get(id);
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user || undefined;
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username,
+    );
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db
-      .insert(users)
-      .values(insertUser)
-      .returning();
+    const id = this.currentId++;
+    const user: User = { ...insertUser, id };
+    this.users.set(id, user);
     return user;
   }
 
   async createDemoRequest(insertDemoRequest: InsertDemoRequest): Promise<DemoRequest> {
-    const [demoRequest] = await db
-      .insert(demoRequests)
-      .values(insertDemoRequest)
-      .returning();
+    const id = this.currentDemoId++;
+    const demoRequest: DemoRequest = { 
+      id,
+      name: insertDemoRequest.name,
+      email: insertDemoRequest.email,
+      company: insertDemoRequest.company,
+      phone: insertDemoRequest.phone || null,
+      message: insertDemoRequest.message || null,
+      createdAt: new Date() 
+    };
+    this.demoRequests.set(id, demoRequest);
+    console.log(`Demo request created: ${demoRequest.name} (${demoRequest.email}) from ${demoRequest.company}`);
     return demoRequest;
   }
 }
 
-export const storage = new DatabaseStorage();
+export const storage = new MemStorage();

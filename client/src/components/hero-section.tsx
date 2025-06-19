@@ -25,16 +25,16 @@ export default function HeroSection() {
               <span className="text-sm font-medium text-blue-700">Enterprise Data Framework</span>
             </div>
             
-            <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 md:mb-8 leading-tight">
               Data <span className="text-gradient">Katalyst</span>
             </h1>
             
-            <p className="text-2xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-xl sm:text-2xl text-gray-600 mb-6 md:mb-8 leading-relaxed">
               Ignite Intelligence. Empower Decisions. Transform Possibilities.
             </p>
             
-            <p className="text-lg text-gray-600 mb-12 leading-relaxed max-w-3xl">
-              A comprehensive data framework built on four foundational pillars: Data Quality, Data Governance, Data Management, and DataOps. Transform your data landscape into a competitive advantage with enterprise-grade tools and processes.
+            <p className="text-base sm:text-lg text-gray-600 mb-8 md:mb-12 leading-relaxed max-w-3xl">
+              A comprehensive data framework built on five foundational pillars: Data Quality, Data Governance, Data Management, Data Analytics, and DataOps. Transform your data landscape into a competitive advantage with enterprise-grade tools and processes.
             </p>
           </div>
 

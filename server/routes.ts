@@ -1,22 +1,27 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertDemoRequestSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Demo request route
   app.post("/api/demo-requests", async (req, res) => {
     try {
-      const result = insertDemoRequestSchema.safeParse(req.body);
-      if (!result.success) {
+      const { name, email, company, phone, message } = req.body;
+      
+      // Basic validation
+      if (!name || !email || !company) {
         return res.status(400).json({ 
-          error: "Invalid request data", 
-          details: result.error.errors 
+          error: "Missing required fields: name, email, and company are required" 
         });
       }
 
-      const demoRequest = await storage.createDemoRequest(result.data);
-      console.log(`New demo request created: ${demoRequest.name} (${demoRequest.email})`);
+      const demoRequest = await storage.createDemoRequest({
+        name,
+        email,
+        company,
+        phone,
+        message
+      });
       
       res.status(201).json(demoRequest);
     } catch (error) {
