@@ -1,59 +1,6 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
+import { Mail, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function CTASection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    message: ""
-  });
-
-  const { toast } = useToast();
-
-  const createDemoRequest = useMutation({
-    mutationFn: async (data: typeof formData) => {
-      return apiRequest("POST", "/api/demo-requests", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Demo request submitted!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        phone: "",
-        message: ""
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: "Error submitting request",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-      console.error("Demo request error:", error);
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    createDemoRequest.mutate(formData);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
   return (
     <section id="contact" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,100 +29,38 @@ export default function CTASection() {
                 </div>
               ))}
             </div>
-
-
           </div>
 
-          {/* Right side - Contact Form */}
+          {/* Right side - Contact Information */}
           <div className="bg-white rounded-2xl p-6 lg:p-8 card-subtle">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Request a Demo</h3>
-            <p className="text-gray-600 mb-6 text-sm md:text-base">
-              See Data Katalyst in action. Our experts will show you how to transform your data infrastructure.
-            </p>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="Full Name *"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="Work Email *"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
-                  />
-                </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Mail className="h-8 w-8 text-blue-600" />
               </div>
               
-              <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
-                <div>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    placeholder="Company *"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="Phone Number"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-sm md:text-base"
-                  />
-                </div>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                Get in Touch
+              </h3>
+              
+              <p className="text-gray-600 mb-6 text-sm md:text-base">
+                For more information about Data Katalyst and how we can help transform your data infrastructure, 
+                please contact us directly.
+              </p>
+              
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <p className="text-sm text-gray-600 mb-2">Contact us at:</p>
+                <a 
+                  href="mailto:datakatalyst@pratishthanventures.com"
+                  className="text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200 break-all"
+                >
+                  datakatalyst@pratishthanventures.com
+                </a>
               </div>
               
-              <div>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Tell us about your data challenges..."
-                  rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none transition-all duration-200 text-sm md:text-base"
-                />
-              </div>
-              
-              <button
-                type="submit"
-                disabled={createDemoRequest.isPending}
-                className="w-full primary-gradient text-white px-6 py-3.5 rounded-lg font-semibold hover:opacity-90 transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md text-sm md:text-base"
-              >
-                {createDemoRequest.isPending ? (
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
-                    Submitting...
-                  </div>
-                ) : (
-                  <>
-                    Schedule Demo
-                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
-                  </>
-                )}
-              </button>
-            </form>
-            
-            <p className="text-xs text-gray-500 mt-4 text-center leading-relaxed">
-              By submitting this form, you agree to receive communications from Data Katalyst.
-            </p>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Our team will get back to you within 24 hours to discuss your data transformation needs.
+              </p>
+            </div>
           </div>
         </div>
       </div>
