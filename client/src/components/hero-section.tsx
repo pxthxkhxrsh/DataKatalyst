@@ -55,7 +55,7 @@ export default function HeroSection() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200">
             {[
-              { number: "4", label: "Core Pillars" },
+              { number: "5", label: "Core Pillars" },
               { number: "100+", label: "Data Sources" },
               { number: "99.9%", label: "Reliability" }
             ].map((stat, index) => (
